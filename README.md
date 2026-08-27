@@ -414,6 +414,15 @@ here first:
 
 ---
 
+## Attribution
+
+**Architecture and system design — M. Peker.** The domain model, the control boundaries,
+the policy design, and the decision to make capability structural rather than textual.
+
+**Coding — Qwen3-Coder-30B-A3B.**
+
+---
+
 <div align="center">
 <sub>MIT licensed · Built as a reference implementation and a curriculum</sub>
 </div>
