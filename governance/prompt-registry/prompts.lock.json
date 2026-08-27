@@ -1,0 +1,8 @@
+{
+  "arbitrate_deliberation@1.0.0": "300bd6794ab9dbea",
+  "assess_resolution@1.0.0": "44089e1a7a3846b2",
+  "classify_ticket@1.0.0": "5b2249539b1cc581",
+  "compose_reply@1.1.0": "75539a124e3074f9",
+  "deliberate_turn@1.0.0": "7c287467d8b9e7a9",
+  "judge_reply@1.0.0": "e6f78830b69ec191"
+}

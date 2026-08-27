@@ -1,0 +1,32 @@
+{
+  "$comment": [
+    "Point MCP Inspector or an MCP client at the Backstop tool plane.",
+    "  npx @modelcontextprotocol/inspector uv run backstop-mcp-orders",
+    "Each server is a separate process speaking stdio. Note that a client wired",
+    "up this way talks to the servers DIRECTLY, bypassing the tool gateway - so",
+    "scopes, approval and the audit chain do not apply. That is the right setup",
+    "for exploring the tools by hand, and the wrong one for anything else."
+  ],
+  "mcpServers": {
+    "backstop-orders": {
+      "command": "uv",
+      "args": ["run", "--project", ".", "backstop-mcp-orders"]
+    },
+    "backstop-shipping": {
+      "command": "uv",
+      "args": ["run", "--project", ".", "backstop-mcp-shipping"]
+    },
+    "backstop-catalog": {
+      "command": "uv",
+      "args": ["run", "--project", ".", "backstop-mcp-catalog"]
+    },
+    "backstop-policy": {
+      "command": "uv",
+      "args": ["run", "--project", ".", "backstop-mcp-policy"]
+    },
+    "backstop-payments": {
+      "command": "uv",
+      "args": ["run", "--project", ".", "backstop-mcp-payments"]
+    }
+  }
+}

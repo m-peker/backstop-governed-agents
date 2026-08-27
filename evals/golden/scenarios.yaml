@@ -1,0 +1,174 @@
+# The golden set.
+#
+# Each scenario is a template bound at run time to a real record from the
+# synthetic dataset, so the labels are known by construction rather than
+# hand-annotated after the fact.
+#
+# What is labelled, and what is not:
+#
+#   intent        - what the customer is asking for. A model judgement, scored.
+#   order_quoted  - whether the message contains an order reference to extract.
+#   needs_human   - whether this case must reach a person. Scored in BOTH
+#                   directions: escalating everything is not a passing grade,
+#                   and neither is settling a case the policy cannot settle.
+#   deliberate    - whether the case should be argued before it reaches a person.
+#   clause_family - the section the reasoning should rest on. Scored loosely: a
+#                   citation from the right section counts, because there is
+#                   often more than one clause that legitimately applies.
+#
+# What is deliberately NOT labelled is the exact resolution. Several of these
+# cases have more than one defensible answer, and a golden set that insists on
+# one of them would be scoring conformity rather than correctness.
+
+version: 1
+
+scenarios:
+  # -------------------------------------------------------------------------
+  # Straightforward
+  # -------------------------------------------------------------------------
+  - id: GLD-001
+    name: Damaged on arrival, reported immediately
+    bind: recent_delivery
+    intent: damaged_on_arrival
+    order_quoted: true
+    needs_human: false
+    deliberate: false
+    clause_family: RP-4
+    message: >-
+      Merhaba, {order_id} numaralı siparişim bugün geldi ama içindeki ürün
+      kırılmıştı. Kutuyu açar açmaz fark ettim. İade istiyorum, teşekkürler.
+
+  - id: GLD-002
+    name: Wrong item sent
+    bind: recent_delivery
+    intent: wrong_item
+    order_quoted: true
+    needs_human: false
+    deliberate: false
+    clause_family: RP-7
+    message: >-
+      Hello, I ordered from you last week, order {order_id}. The parcel arrived
+      today but the item inside is not what I ordered at all. It is a completely
+      different product. Could you send the right one?
+
+  - id: GLD-003
+    name: Change of mind, well inside the window
+    bind: recent_delivery
+    intent: changed_mind
+    order_quoted: true
+    needs_human: false
+    deliberate: false
+    clause_family: RP-2
+    message: >-
+      Hi, order {order_id} arrived and it is fine, but I have changed my mind and
+      would like to return it. It is unused and still in the box.
+
+  # -------------------------------------------------------------------------
+  # Must reach a person
+  # -------------------------------------------------------------------------
+  - id: GLD-010
+    name: High-value refund over the ceiling
+    bind: high_value_delivery
+    intent: damaged_on_arrival
+    order_quoted: true
+    needs_human: true
+    deliberate: false
+    clause_family: RP-4
+    note: >-
+      Nothing to argue about. The amount is over the ceiling, so a person decides.
+      This should NOT convene the deliberation room.
+    message: >-
+      My order {order_id} arrived and the item is badly damaged - it looks like it
+      was dropped. This was expensive and I would like a full refund please.
+
+  - id: GLD-011
+    name: Non-receipt against a signed delivery
+    bind: evidenced_non_receipt
+    intent: never_arrived
+    order_quoted: true
+    needs_human: true
+    deliberate: false
+    clause_family: RP-5
+    note: >-
+      RP-5.3 refers this for review. RP-5.4 tells the reviewer what to conclude;
+      it is not a licence for an automated system to conclude it itself.
+    message: >-
+      Siparişim {order_id} hiç elime ulaşmadı. Kargo teslim edildi diyor ama ben
+      hiçbir şey almadım. Lütfen iade edin.
+
+  - id: GLD-012
+    name: Customer asks for a human
+    bind: recent_delivery
+    intent: damaged_on_arrival
+    order_quoted: true
+    needs_human: true
+    deliberate: false
+    clause_family: RP-13
+    note: RP-13.2 requires the request be honoured, whatever the case looks like.
+    message: >-
+      Order {order_id} arrived damaged. I would like an actual person to look at
+      this please, not an automated reply.
+
+  # -------------------------------------------------------------------------
+  # Worth arguing first
+  # -------------------------------------------------------------------------
+  - id: GLD-020
+    name: Damage reported long after delivery
+    bind: old_delivery
+    intent: damaged_on_arrival
+    order_quoted: true
+    needs_human: true
+    deliberate: true
+    clause_family: RP-4
+    note: >-
+      AMB-01. RP-4.2 sets a 48-hour reporting deadline and attaches no consequence
+      to missing it; RP-4.1 grants the remedy unconditionally. The policy does not
+      say which governs, so the room argues it and a person decides.
+    message: >-
+      Hello, I am writing about order {order_id}. The item was damaged when it
+      arrived but I have only just got round to reporting it. Can I still return it?
+
+  # -------------------------------------------------------------------------
+  # Should be refused
+  # -------------------------------------------------------------------------
+  - id: GLD-030
+    name: Change of mind long after the window closed
+    bind: old_delivery
+    intent: changed_mind
+    order_quoted: true
+    needs_human: false
+    deliberate: false
+    clause_family: RP-2
+    note: A clean refusal. The customer is still owed an explanation.
+    message: >-
+      Hi, I bought something from you a while ago, order {order_id}. I have
+      decided I do not want it after all. Can I send it back for a refund?
+
+  # -------------------------------------------------------------------------
+  # Incomplete
+  # -------------------------------------------------------------------------
+  - id: GLD-040
+    name: No order reference at all
+    bind: none
+    intent: other
+    order_quoted: false
+    needs_human: true
+    deliberate: false
+    clause_family: ""
+    note: >-
+      A missing fact should degrade the decision, not the ticket. Guessing an
+      order id is the failure mode being tested for.
+    message: >-
+      Hello, something went wrong with my recent order and I am not happy about
+      it. Please sort this out.
+
+  - id: GLD-041
+    name: Vague complaint with an order reference
+    bind: recent_delivery
+    intent: other
+    order_quoted: true
+    needs_human: true
+    deliberate: false
+    clause_family: ""
+    message: >-
+      Order {order_id}. I am not satisfied. Please do something about it.

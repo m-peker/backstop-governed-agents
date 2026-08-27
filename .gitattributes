@@ -1,0 +1,29 @@
+# Normalise line endings in the repository to LF.
+#
+# Without this, a Windows checkout rewrites every file to CRLF on the way in and
+# the next contributor on Linux sees the whole tree as modified. Declaring it
+# here means the stored form is LF regardless of who commits.
+* text=auto eol=lf
+
+# Windows-native files that must keep CRLF to run correctly.
+*.ps1 text eol=crlf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Never touched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.sqlite binary
+
+# Lockfiles are generated. Collapse them in diffs so a review shows the change
+# that matters rather than a thousand resolved dependency lines.
+uv.lock linguist-generated=true -diff
+package-lock.json linguist-generated=true -diff
+
+# The synthetic policy corpus is prose, not code, and should not count towards
+# the repository's language statistics.
+seed-data/** linguist-documentation=true

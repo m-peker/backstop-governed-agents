@@ -1,0 +1,78 @@
+name: Red team
+
+on:
+  pull_request:
+    paths:
+      - "packages/guardrails/**"
+      - "packages/policy/**"
+      - "packages/toolgateway/**"
+      - "packages/core-graph/src/backstop_graph/prompts.py"
+      - "evals/redteam/**"
+      - ".github/workflows/redteam.yml"
+  schedule:
+    # Nightly. The corpus grows over time and the controls it probes are changed
+    # by work that does not touch the paths above.
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: redteam-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  attack:
+    name: Attack success rate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "**/pyproject.toml"
+
+      - run: uv sync --all-packages --dev
+
+      # No provider key is set for this job, and that is the point. Every control
+      # the suite probes - normalisation, tokenisation, injection detection,
+      # scopes, the ceiling, groundedness - is deterministic code. A security
+      # suite that needed a live model to tell you whether your controls held
+      # would be measuring the wrong thing.
+      - name: Run the attack corpus
+        run: |
+          uv run python -m evals.runners.redteam \
+            --json evals/reports/redteam.json \
+            --asr-threshold 0.02 \
+            --fp-threshold 0.0
+
+      - name: Publish the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: redteam-report
+          path: evals/reports/redteam.json
+          if-no-files-found: warn
+
+      - name: Summarise
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          path = pathlib.Path("evals/reports/redteam.json")
+          if not path.exists():
+              print("The red-team run produced no report."); raise SystemExit
+          data = json.loads(path.read_text(encoding="utf-8"))
+          print("## Red team\n")
+          print(f"| metric | value |\n|---|---|")
+          print(f"| attack success rate | {data['attack_success_rate']:.1%} |")
+          print(f"| detection rate | {data['detection_rate']:.1%} |")
+          print(f"| false positive rate | {data['false_positive_rate']:.1%} |")
+          print(f"| attacks | {data['totals']['attacks']} |")
+          print(f"| breaches | {data['totals']['breaches']} |")
+          print("\n### By family\n")
+          print("| family | as expected | breaches |\n|---|---|---|")
+          for family, stats in sorted(data["by_family"].items()):
+              print(f"| {family} | {stats['correct']}/{stats['total']} | {stats['breached']} |")
+          PY

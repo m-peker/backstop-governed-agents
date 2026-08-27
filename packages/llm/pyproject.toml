@@ -1,0 +1,20 @@
+[project]
+name = "backstop-llm"
+version = "0.1.0"
+description = "Multi-provider LLM access with routing, pricing and budget control"
+requires-python = ">=3.12"
+dependencies = [
+    "backstop-telemetry",
+    "pydantic>=2.9",
+    "openai>=1.50",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/backstop_llm"]
+
+[tool.uv.sources]
+backstop-telemetry = { workspace = true }

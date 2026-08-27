@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Data and artifacts
+seed-data/generated/
+
+# The graph checkpointer. Holds live ticket state, which includes the raw
+# customer messages - the one place in the repository that would carry real
+# personal data if this were pointed at a real inbox.
+.backstop/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+evals/reports/*.html
+evals/reports/*.json
+!evals/reports/.gitkeep
+*.db
+*.sqlite3
+
+# Infra
+infra/docker/volumes/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Written by the dependency-audit workflow.
+requirements.audit.txt

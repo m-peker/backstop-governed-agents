@@ -1,0 +1,18 @@
+{
+  "name": "backstop",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Backstop - a governed agent platform for retail customer operations",
+  "workspaces": [
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace @backstop/web",
+    "build": "npm run build --workspace @backstop/web",
+    "typecheck": "npm run typecheck --workspace @backstop/web",
+    "lint": "npm run lint --workspace @backstop/web"
+  }
+}

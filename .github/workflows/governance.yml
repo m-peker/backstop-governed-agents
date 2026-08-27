@@ -1,0 +1,45 @@
+name: Governance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: governance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  integrity:
+    name: Prompts, rules and policy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "**/pyproject.toml"
+
+      - run: uv sync --all-packages --dev
+
+      # A prompt is a versioned artefact. Editing one without bumping its version
+      # changes system behaviour while leaving every past decision dossier
+      # claiming a version that no longer says what it said.
+      - name: Prompt registry integrity
+        run: uv run python scripts/check_governance.py prompts
+
+      # Every rule has to name the clauses it implements, and every clause it
+      # names has to exist. A rule that cannot cite a clause cannot be defended.
+      - name: Policy rules cite real clauses
+        run: uv run python scripts/check_governance.py rules
+
+      # Ground truth for the evaluation harness. An ambiguity pointing at a
+      # renumbered clause is a broken label that silently stops testing anything.
+      - name: Planted ambiguities are intact
+        run: uv run python scripts/check_governance.py ambiguities
+
+      - name: The declared tool surface matches the servers
+        run: uv run pytest mcp-servers/tests/test_servers.py -q

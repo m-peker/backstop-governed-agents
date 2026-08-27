@@ -1,0 +1,132 @@
+[project]
+name = "backstop"
+version = "0.1.0"
+description = "Backstop - a governed agent platform for retail customer operations"
+requires-python = ">=3.12"
+dependencies = [
+    "backstop-api",
+    "backstop-deliberation",
+    "backstop-domain",
+    "backstop-graph",
+    "backstop-guardrails",
+    "backstop-llm",
+    "backstop-mcp",
+    "backstop-policy",
+    "backstop-telemetry",
+    "backstop-toolgateway",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+    "mypy>=1.11",
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+    "pytest-cov>=5.0",
+    "httpx>=0.27",
+    "types-pyyaml>=6.0.12.20260815",
+    "openai>=1.50",
+    "langgraph>=0.2",
+    "langgraph-checkpoint-sqlite>=3.1.1",
+    "python-dotenv>=1.2.3",
+    "autogen-agentchat>=0.4",
+    "autogen-core>=0.4",
+]
+
+[tool.uv.workspace]
+members = ["apps/api", "mcp-servers", "packages/core-graph", "packages/deliberation", "packages/domain", "packages/guardrails", "packages/llm", "packages/policy", "packages/telemetry", "packages/toolgateway"]
+
+[tool.uv.sources]
+backstop-api = { workspace = true }
+backstop-deliberation = { workspace = true }
+backstop-domain = { workspace = true }
+backstop-graph = { workspace = true }
+backstop-guardrails = { workspace = true }
+backstop-llm = { workspace = true }
+backstop-mcp = { workspace = true }
+backstop-policy = { workspace = true }
+backstop-telemetry = { workspace = true }
+backstop-toolgateway = { workspace = true }
+
+# ---------------------------------------------------------------------------
+# Lint
+# ---------------------------------------------------------------------------
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["apps/api/src", "mcp-servers/src", "packages/core-graph/src", "packages/deliberation/src", "packages/domain/src", "packages/guardrails/src", "packages/llm/src", "packages/policy/src", "packages/telemetry/src", "packages/toolgateway/src"]
+# Ruff formats Python blocks inside Markdown. Documentation snippets are
+# illustrative and aligned for reading, so they are left alone.
+extend-exclude = ["docs"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",    # pycodestyle
+    "F",         # pyflakes
+    "I",         # isort
+    "N",         # pep8-naming
+    "UP",        # pyupgrade
+    "B",         # bugbear
+    "A",         # builtins shadowing
+    "C4",        # comprehensions
+    "SIM",       # simplify
+    "TID",       # tidy imports
+    "RUF",       # ruff rules
+    "ASYNC",     # async correctness
+    "S",         # bandit - security
+    "BLE",       # no blind excepts without a stated reason
+]
+ignore = [
+    "S101",   # assert is fine in tests
+    # Exception names here are refusal reasons, and several are control flow
+    # rather than failure: the graph catches ApprovalRequired and turns it into a
+    # human-approval interrupt. `raise ApprovalRequired(...)` says what happened;
+    # `raise ApprovalRequiredError(...)` says it twice. The base classes -
+    # GatewayError, ToolError - do carry the suffix, so the hierarchy still reads
+    # conventionally at the point where it matters.
+    "N818",   # exception name without an Error suffix
+]
+
+# Turkish characters are data in this project, not typos. The synthetic customer
+# base, the address corpus and the text-folding tests all need them, and folding
+# dotted and dotless i correctly is the point of `backstop_domain.text`.
+allowed-confusables = ["İ", "ı", "Ş", "ş", "Ğ", "ğ", "Ç", "ç", "Ö", "ö", "Ü", "ü"]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S", "N"]
+# Homoglyphs are the subject matter here: the confusables map exists to fold
+# them, and the tests exist to prove it works. Flagging them is the linter
+# doing its job on code whose job is the same thing.
+"packages/guardrails/src/backstop_guardrails/normalise.py" = ["RUF001", "RUF002"]
+"packages/guardrails/tests/test_guardrails.py" = ["RUF001", "RUF002"]
+"packages/domain/src/backstop_domain/text.py" = ["RUF001"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "parents"
+
+# ---------------------------------------------------------------------------
+# Types
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_unreachable = true
+disallow_any_explicit = false
+plugins = ["pydantic.mypy"]
+mypy_path = ["apps/api/src", "mcp-servers/src", "packages/core-graph/src", "packages/deliberation/src", "packages/domain/src", "packages/guardrails/src", "packages/llm/src", "packages/policy/src", "packages/telemetry/src", "packages/toolgateway/src"]
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = ["tests.*"]
+disallow_untyped_defs = false
+
+# ---------------------------------------------------------------------------
+# Tests
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["apps/api/tests", "mcp-servers/tests", "packages/core-graph/tests", "packages/deliberation/tests", "packages/domain/tests", "packages/guardrails/tests", "packages/llm/tests", "packages/policy/tests", "packages/telemetry/tests", "packages/toolgateway/tests"]
+addopts = "-q --strict-markers"
+
+[tool.coverage.report]
+exclude_also = ["if TYPE_CHECKING:", "raise NotImplementedError"]

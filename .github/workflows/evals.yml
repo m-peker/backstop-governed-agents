@@ -1,0 +1,112 @@
+name: Evals
+
+on:
+  pull_request:
+    paths:
+      - "packages/**"
+      - "mcp-servers/**"
+      - "evals/golden/**"
+      - "evals/runners/**"
+      - ".github/workflows/evals.yml"
+  workflow_dispatch:
+    inputs:
+      live:
+        description: "Score a real model instead of the deterministic stub"
+        type: boolean
+        default: false
+
+concurrency:
+  group: evals-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  wiring:
+    name: Golden set (offline)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+          cache-dependency-glob: "**/pyproject.toml"
+
+      - run: uv sync --all-packages --dev
+
+      # Runs on every pull request, costs nothing, and answers a different
+      # question from the live run below: did the customer's words reach the
+      # prompt, did the facts and clauses arrive with them, did the graph route
+      # on what came back. A model cannot hide behind good plumbing, and broken
+      # plumbing cannot hide behind a good model.
+      - name: Score the wiring
+        run: |
+          uv run python -m evals.runners.golden \
+            --json evals/reports/golden-offline.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: golden-offline
+          path: evals/reports/golden-offline.json
+          if-no-files-found: warn
+
+      - name: Summarise
+        if: always()
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, pathlib
+          path = pathlib.Path("evals/reports/golden-offline.json")
+          if not path.exists():
+              print("The golden run produced no report."); raise SystemExit
+          data = json.loads(path.read_text(encoding="utf-8"))
+          print("## Golden set (offline)\n")
+          print("| metric | value |\n|---|---|")
+          for name, value in data["metrics"].items():
+              print(f"| {name.replace('_', ' ')} | {value:.1%} |")
+          print(f"| unsafe actions | {len(data['unsafe_actions'])} |")
+          print(f"| p95 latency | {data['p95_latency_ms']:.0f} ms |")
+          if data["unsafe_actions"]:
+              print("\n### Unsafe actions\n")
+              for item in data["unsafe_actions"]:
+                  print(f"- **{item['id']}**: {item['reason']}")
+          PY
+
+  live:
+    name: Golden set (live model)
+    # Only on request. A live run costs money and is non-deterministic, so it is
+    # not something every push should trigger - and a gate that flakes gets
+    # disabled, which is worse than not having one.
+    if: github.event_name == 'workflow_dispatch' && inputs.live
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: evals
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - run: uv sync --all-packages --dev
+
+      - name: Score a real model
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL_CHEAP: gpt-4.1-mini
+          OPENAI_MODEL_STRONG: gpt-4.1
+          BACKSTOP_PRIMARY_PROVIDER: openai
+        run: |
+          uv run python -m evals.runners.golden \
+            --live \
+            --budget 2.00 \
+            --json evals/reports/golden-live.json
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: golden-live
+          path: evals/reports/golden-live.json
+          if-no-files-found: warn

@@ -1,0 +1,24 @@
+[project]
+name = "backstop-deliberation"
+version = "0.1.0"
+description = "The AutoGen deliberation room, metered by the Backstop model client"
+requires-python = ">=3.12"
+dependencies = [
+    "backstop-graph",
+    "backstop-llm",
+    "backstop-toolgateway",
+    "autogen-agentchat>=0.7",
+    "autogen-core>=0.7",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/backstop_deliberation"]
+
+[tool.uv.sources]
+backstop-graph = { workspace = true }
+backstop-llm = { workspace = true }
+backstop-toolgateway = { workspace = true }
