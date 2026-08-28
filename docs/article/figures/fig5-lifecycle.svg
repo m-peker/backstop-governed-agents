@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1030" viewBox="0 0 1240 1030">
+  <rect width="1240" height="1030" fill="#ffffff"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#78716c"/></marker>
+    <marker id="a-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#0f766e"/></marker>
+    <marker id="a-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#b91c1c"/></marker>
+    <marker id="a-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#b45309"/></marker>
+    <marker id="a-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#6d28d9"/></marker>
+    <marker id="a-faint" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#a8a29e"/></marker>
+    <marker id="a-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M 0 1 L 9 5 L 0 9 z" fill="#334155"/></marker>
+  </defs>
+  <text x="40.0" y="46.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="21" fill="#1c1917" text-anchor="start" font-weight="600">One refund, refused and then approved</text>
+  <text x="40.0" y="71.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="14.5" fill="#78716c" text-anchor="start">Above the automatic ceiling, so the graph stops. Then it crashes, and the replay does not pay twice.</text>
+  <rect x="90.9" y="82.0" width="94.2" height="30.0" rx="8" fill="#f5f3ff" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="138.0" y="102.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#6d28d9" text-anchor="middle" font-weight="600">LangGraph</text>
+  <line x1="138.0" y1="116.0" x2="138.0" y2="932.0" stroke="#d6d3d1" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+  <rect x="336.0" y="82.0" width="112.0" height="30.0" rx="8" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="392.0" y="102.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#0f766e" text-anchor="middle" font-weight="600">Policy engine</text>
+  <line x1="392.0" y1="116.0" x2="392.0" y2="932.0" stroke="#d6d3d1" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+  <rect x="592.0" y="82.0" width="108.1" height="30.0" rx="8" fill="#f0fdfa" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="646.0" y="102.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#0f766e" text-anchor="middle" font-weight="600">Tool gateway</text>
+  <line x1="646.0" y1="116.0" x2="646.0" y2="932.0" stroke="#d6d3d1" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+  <rect x="848.2" y="82.0" width="83.7" height="30.0" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="1.5"/>
+  <text x="890.0" y="102.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#b45309" text-anchor="middle" font-weight="600">Reviewer</text>
+  <line x1="890.0" y1="116.0" x2="890.0" y2="932.0" stroke="#d6d3d1" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+  <rect x="1079.2" y="82.0" width="85.6" height="30.0" rx="8" fill="#f8fafc" stroke="#334155" stroke-width="1.5"/>
+  <text x="1122.0" y="102.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12.5" fill="#334155" text-anchor="middle" font-weight="600">payments</text>
+  <line x1="1122.0" y1="116.0" x2="1122.0" y2="932.0" stroke="#d6d3d1" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="3 5"/>
+  <line x1="138.0" y1="158.0" x2="385.0" y2="158.0" stroke="#6d28d9" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-violet)"/>
+  <rect x="46.0" y="149.0" width="22.0" height="18.0" rx="5" fill="#6d28d9" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="57.0" y="162.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">1</text>
+  <text x="265.0" y="147.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#6d28d9" text-anchor="middle">proposal: refund 590.27</text>
+  <line x1="392.0" y1="210.0" x2="145.0" y2="210.0" stroke="#0f766e" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-teal)"/>
+  <rect x="46.0" y="201.0" width="22.0" height="18.0" rx="5" fill="#0f766e" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="57.0" y="214.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">2</text>
+  <text x="265.0" y="199.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#0f766e" text-anchor="middle">REQUIRE_HUMAN  -  RP-4.1 ceiling is 75.00</text>
+  <line x1="138.0" y1="262.0" x2="639.0" y2="262.0" stroke="#6d28d9" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-violet)"/>
+  <rect x="46.0" y="253.0" width="22.0" height="18.0" rx="5" fill="#6d28d9" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="57.0" y="266.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">3</text>
+  <text x="392.0" y="251.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#6d28d9" text-anchor="middle">issue_refund(590.27)</text>
+  <line x1="646.0" y1="314.0" x2="145.0" y2="314.0" stroke="#b91c1c" stroke-width="1.6" stroke-linecap="round" stroke-dasharray="5 4" marker-end="url(#a-red)"/>
+  <line x1="385.0" y1="307.0" x2="399.0" y2="321.0" stroke="#b91c1c" stroke-width="2.2" stroke-linecap="round"/>
+  <line x1="399.0" y1="307.0" x2="385.0" y2="321.0" stroke="#b91c1c" stroke-width="2.2" stroke-linecap="round"/>
+  <rect x="46.0" y="305.0" width="22.0" height="18.0" rx="5" fill="#b91c1c" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="57.0" y="318.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">4</text>
+  <text x="392.0" y="303.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#b91c1c" text-anchor="middle">REFUSED  -  no approval token</text>
+  <rect x="686.0" y="328.0" width="300.0" height="46.0" rx="7" fill="#f8fafc" stroke="#334155" stroke-width="1.2"/>
+  <text x="698.0" y="352.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#334155" text-anchor="start">The refusal is appended to the audit chain</text>
+  <text x="698.0" y="368.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#334155" text-anchor="start">before anything else happens.</text>
+  <line x1="78.0" y1="386.0" x2="1180.0" y2="386.0" stroke="#d6d3d1" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 6"/>
+  <text x="78.0" y="380.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#78716c" text-anchor="start" font-style="italic">the graph checkpoints and stops - this can last for days</text>
+  <line x1="138.0" y1="412.0" x2="883.0" y2="412.0" stroke="#b45309" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-amber)"/>
+  <rect x="46.0" y="403.0" width="22.0" height="18.0" rx="5" fill="#b45309" stroke="#b45309" stroke-width="1.5"/>
+  <text x="57.0" y="416.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">5</text>
+  <text x="514.0" y="401.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#b45309" text-anchor="middle">interrupt()</text>
+  <line x1="890.0" y1="464.0" x2="653.0" y2="464.0" stroke="#b45309" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-amber)"/>
+  <rect x="46.0" y="455.0" width="22.0" height="18.0" rx="5" fill="#b45309" stroke="#b45309" stroke-width="1.5"/>
+  <text x="57.0" y="468.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">6</text>
+  <text x="768.0" y="453.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#b45309" text-anchor="middle">approve</text>
+  <line x1="646.0" y1="516.0" x2="883.0" y2="516.0" stroke="#b45309" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-amber)"/>
+  <rect x="46.0" y="507.0" width="22.0" height="18.0" rx="5" fill="#b45309" stroke="#b45309" stroke-width="1.5"/>
+  <text x="57.0" y="520.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">7</text>
+  <text x="768.0" y="505.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#b45309" text-anchor="middle">HMAC token bound to ticket + tool + args digest</text>
+  <line x1="890.0" y1="568.0" x2="145.0" y2="568.0" stroke="#b45309" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-amber)"/>
+  <rect x="46.0" y="559.0" width="22.0" height="18.0" rx="5" fill="#b45309" stroke="#b45309" stroke-width="1.5"/>
+  <text x="57.0" y="572.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">8</text>
+  <text x="514.0" y="557.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#b45309" text-anchor="middle">Command(resume=...)</text>
+  <line x1="138.0" y1="630.0" x2="639.0" y2="630.0" stroke="#0f766e" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-teal)"/>
+  <rect x="46.0" y="621.0" width="22.0" height="18.0" rx="5" fill="#0f766e" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="57.0" y="634.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">9</text>
+  <text x="392.0" y="619.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#0f766e" text-anchor="middle">issue_refund(590.27) + token</text>
+  <line x1="646.0" y1="682.0" x2="1115.0" y2="682.0" stroke="#0f766e" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-teal)"/>
+  <rect x="46.0" y="673.0" width="22.0" height="18.0" rx="5" fill="#0f766e" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="57.0" y="686.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">10</text>
+  <text x="884.0" y="671.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#0f766e" text-anchor="middle">execute</text>
+  <line x1="1122.0" y1="734.0" x2="653.0" y2="734.0" stroke="#334155" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-slate)"/>
+  <rect x="46.0" y="725.0" width="22.0" height="18.0" rx="5" fill="#334155" stroke="#334155" stroke-width="1.5"/>
+  <text x="57.0" y="738.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">11</text>
+  <text x="884.0" y="723.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#334155" text-anchor="middle">ok</text>
+  <line x1="78.0" y1="804.0" x2="1180.0" y2="804.0" stroke="#d6d3d1" stroke-width="1" stroke-linecap="round" stroke-dasharray="2 6"/>
+  <text x="78.0" y="798.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11" fill="#78716c" text-anchor="start" font-style="italic">the process crashes and replays the same call</text>
+  <line x1="138.0" y1="830.0" x2="639.0" y2="830.0" stroke="#6d28d9" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-violet)"/>
+  <rect x="46.0" y="821.0" width="22.0" height="18.0" rx="5" fill="#6d28d9" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="57.0" y="834.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">12</text>
+  <text x="392.0" y="819.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#6d28d9" text-anchor="middle">issue_refund(590.27) + token</text>
+  <line x1="646.0" y1="882.0" x2="145.0" y2="882.0" stroke="#0f766e" stroke-width="1.6" stroke-linecap="round" marker-end="url(#a-teal)"/>
+  <rect x="46.0" y="873.0" width="22.0" height="18.0" rx="5" fill="#0f766e" stroke="#0f766e" stroke-width="1.5"/>
+  <text x="57.0" y="886.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="10.5" fill="#ffffff" text-anchor="middle" font-weight="600">13</text>
+  <text x="392.0" y="871.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="11.5" fill="#0f766e" text-anchor="middle">replayed  -  money moved exactly once</text>
+  <rect x="40.0" y="950.0" width="1160.0" height="56.0" rx="10" fill="#fafaf9" stroke="#d6d3d1" stroke-width="1.5"/>
+  <text x="58.0" y="974.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1c1917" text-anchor="start">The token is bound to the arguments, not just the ticket, so approving 75.00 would not have authorised 590.27.</text>
+  <text x="58.0" y="993.0" font-family="Segoe UI, -apple-system, BlinkMacSystemFont, Inter, Roboto, Helvetica, Arial, sans-serif" font-size="12" fill="#1c1917" text-anchor="start">The idempotency key is derived from the call rather than supplied with it, so step 12 cannot opt out of step 10.</text>
+  <text x="1200.0" y="1018.0" font-family="Cascadia Mono, Consolas, SF Mono, Menlo, DejaVu Sans Mono, monospace" font-size="11.5" fill="#a8a29e" text-anchor="end">backstop-governed-agents</text>
+</svg>

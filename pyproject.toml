@@ -56,8 +56,10 @@ target-version = "py312"
 line-length = 100
 src = ["apps/api/src", "mcp-servers/src", "packages/core-graph/src", "packages/deliberation/src", "packages/domain/src", "packages/guardrails/src", "packages/llm/src", "packages/policy/src", "packages/telemetry/src", "packages/toolgateway/src"]
 # Ruff formats Python blocks inside Markdown. Documentation snippets are
-# illustrative and aligned for reading, so they are left alone.
-extend-exclude = ["docs"]
+# illustrative and aligned for reading, so they are left alone - but only the
+# Markdown is exempt. Real Python under docs/, such as the article figure
+# generators, is linted like everything else.
+extend-exclude = ["docs/**/*.md"]
 
 [tool.ruff.lint]
 select = [
@@ -93,6 +95,11 @@ ignore = [
 allowed-confusables = ["İ", "ı", "Ş", "ş", "Ğ", "ğ", "Ç", "ç", "Ö", "ö", "Ü", "ü"]
 
 [tool.ruff.lint.per-file-ignores]
+# The article figures are drawing scripts: most of their long lines are the
+# display copy that ends up inside a diagram. Hard-wrapping those literals at
+# 100 columns makes the figures harder to edit and changes nothing about the
+# output, so line length is not enforced there. Everything else still is.
+"docs/article/figures/*.py" = ["E501"]
 "**/tests/**" = ["S", "N"]
 # Homoglyphs are the subject matter here: the confusables map exists to fold
 # them, and the tests exist to prove it works. Flagging them is the linter
