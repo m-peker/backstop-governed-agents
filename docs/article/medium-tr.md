@@ -1,6 +1,6 @@
-# Modeli ikna etmek yetmemeli
+# Yapay zeka ajanlarında prompt injection: filtre yazmak neden yetmez?
 
-### Para harcayabilen bir yapay zekâ ajanı yazarken öğrendiklerim.
+### Para harcayabilen bir ajanı, modeli ikna etmenin yetmeyeceği şekilde kurmak.
 
 ---
 
