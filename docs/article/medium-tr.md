@@ -126,7 +126,7 @@ Bir de şu: reddedilen işlemler de kayda geçiyor, başarılı olanlar kadar ay
 
 ---
 
-## Beni en çok utandıran hata
+## Türkçe karakterlerden çıkan bir açık
 
 Kişisel bilgileri maskeleyen katman, isimleri karşılaştırırken Python'un standart küçültme fonksiyonunu kullanıyordu.
 
@@ -134,7 +134,7 @@ Ama `"Ayşe Yılmaz"` küçülünce `"ayse yilmaz"` etmiyor. Noktalı ve noktas�
 
 Yani kendi adını ASCII klavyeyle yazan bir müşteri — ki insanlar gerçekte böyle yazıyor — maskeleme katmanına hiç uğramadan geçiyordu. Adı, kimlik numarası, hepsi açıkta.
 
-Buradan çıkan ders şu: güvenlik katmanındaki bir Türkçe hatası, güvenlik hatasıdır. Ve kod incelemesinde güvenlik hatası gibi görünmez.
+Güvenlik katmanındaki bir Türkçe hatası, güvenlik hatasıdır. Ve kod incelemesinde güvenlik hatası gibi görünmez.
 
 ---
 
