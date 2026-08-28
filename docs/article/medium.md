@@ -41,6 +41,10 @@ Read that diagram by colour, not by boxes. Teal is deterministic code. Violet �
 
 There is exactly one violet region, and **every path from it to a side effect passes through two teal ones**: the policy engine before, the capability boundary after. That is the entire architectural claim. The rest of this article is what each of those layers actually does.
 
+And it is not my claim. Simon Willison, who named prompt injection in 2022, has argued for years that it cannot be filtered away, and proposed the dual-LLM pattern in 2023 for exactly this reason: separate the privileged model from the quarantined one that reads untrusted data. Google DeepMind's CaMeL — *Defeating Prompt Injections by Design* — takes it further, extracting control flow from data flow and handing authority to a capability system rather than to the model. Go back further and you land on the principle of least authority and the object-capability model, both older than most people writing about agents. The genuinely new part is only that the component you cannot trust is now a language model.
+
+What I added is assembly rather than insight: binding the approval to a digest of the arguments rather than to the ticket, deriving the idempotency key instead of accepting one, writing refusals into the same chain as successes, and — the one I would argue for hardest — gating CI on attack success rate while deliberately refusing to gate on detection rate. None of those is a discovery. Having all of them at once, working, and measured, turned out to be the hard part.
+
 The domain is deliberately unglamorous: five MCP tool servers over orders, shipping, catalog, policy retrieval and payments; a synthetic dataset with planted abuse patterns; a policy corpus with clauses that a decision has to cite. Unglamorous is the point. A demo that summarises documents cannot be wrong in a way anyone can measure. A refund can.
 
 ---

@@ -1,6 +1,6 @@
-# Yapay zeka ajanlarında prompt injection: filtre yazmak neden yetmez?
+# Modeli ikna etmek yetmemeli
 
-### Para harcayabilen bir ajanı, modeli ikna etmenin yetmeyeceği şekilde kurmak.
+### Para harcayabilen bir yapay zekâ ajanı yazarken öğrendiklerim.
 
 ---
 
@@ -42,6 +42,20 @@ Kulağa fazla basit geliyor olabilir. Ama pratikte çoğu ajan mimarisi bu ikisi
 Şemaya kutulardan değil, renklerden bakın. Yeşil olan her şey sıradan kod. Mor olan tek kutu var, o da model.
 
 Ve mor kutudan paraya giden her yol iki yeşil kutunun içinden geçiyor: önce kurallar, sonra yetenek sınırı. Mimarinin tüm iddiası bu. Geri kalanı bu iki kutunun ne yaptığı.
+
+---
+
+## Bu fikir bana ait değil
+
+Bunu baştan yazayım, çünkü yukarıdaki şeklin bir soyağacı var.
+
+Prompt injection terimini 2022'de ortaya atan Simon Willison, yıllardır bunun filtreyle çözülemeyeceğini savunuyor; 2023'te önerdiği "dual LLM" deseni tam da bu yüzden var — yetkili modelle, güvenilmez veriye bakan karantinadaki modeli ayırmak. Google DeepMind'ın CaMeL çalışması ("Defeating Prompt Injections by Design") aynı fikri daha ileri götürüyor: kontrol akışını veri akışından ayırıp yetkiyi modelin değil, yetenek tabanlı bir sistemin eline veriyor. Daha geriye giderseniz en az yetki ilkesine ve nesne-yetenek modeline çıkarsınız; ikisi de ajanlar hakkında yazan çoğu insandan yaşlı.
+
+Yeni olan tek şey şu: güvenemediğiniz bileşen bu kez bir dil modeli.
+
+Benim eklediğim fikir değil, kurgu. Onayı talebe değil argümanların özetine bağlamak. Tekrar koruması anahtarını çağırandan almak yerine çağrıdan türetmek. Reddedilen işlemleri başarılı olanlarla aynı zincire yazmak. Ve en çok savunacağım olan: otomatik testlerde saldırı başarı oranına kapı koyup yakalama oranına **bilerek** koymamak.
+
+Hiçbiri tek başına buluş değil. Zor kısmı, hepsinin bir arada, çalışır hâlde ve ölçülmüş olmasıydı.
 
 ---
 

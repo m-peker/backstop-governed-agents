@@ -3,9 +3,9 @@
 Two write-ups of what this repository argues, both drafted for Medium. They are not
 translations of each other.
 
-- [`medium.md`](medium.md) - English, ~3,400 words, six figures. Written for someone who
+- [`medium.md`](medium.md) - English, ~3,600 words, six figures. Written for someone who
   will go and read the code afterwards, so it quotes real rules and real refusals.
-- [`medium-tr.md`](medium-tr.md) - Turkish, ~2,100 words, three figures. Written for
+- [`medium-tr.md`](medium-tr.md) - Turkish, ~1,750 words, three figures. Written for
   someone deciding whether the idea is worth their afternoon, so it carries the argument
   and drops the implementation detail. It ends with what to do in your own system.
 
