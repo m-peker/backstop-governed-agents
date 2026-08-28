@@ -1,7 +1,13 @@
-# The article
+# The articles
 
-[`medium.md`](medium.md) is a long-form write-up of what this repository argues and how it
-is built, drafted for Medium. About 3,400 words and six figures.
+Two write-ups of what this repository argues, both drafted for Medium. They are not
+translations of each other.
+
+- [`medium.md`](medium.md) - English, ~3,400 words, six figures. Written for someone who
+  will go and read the code afterwards, so it quotes real rules and real refusals.
+- [`medium-tr.md`](medium-tr.md) - Turkish, ~2,100 words, three figures. Written for
+  someone deciding whether the idea is worth their afternoon, so it carries the argument
+  and drops the implementation detail. It ends with what to do in your own system.
 
 ## Publishing it
 
@@ -12,14 +18,14 @@ support tables, which is why there are none in the draft.
    paste; the image lines do not, and become literal text.
 2. Delete each `![Figure N ...](figures/...)` line and upload the matching PNG from
    [`figures/`](figures/) in its place. Set the caption from the alt text.
-3. Figure 1 works well as the cover image.
+3. Figure 1 (or `tr1-katmanlar.png` for the Turkish piece) works well as the cover image.
 
 The PNGs are rendered at 2x, so they stay sharp when a reader clicks to zoom.
 
 ## Regenerating the figures
 
 The figures are generated rather than drawn, so the palette, type scale and arrowheads
-stay identical across all six by construction instead of by care. Colour carries an
+stay identical across all nine by construction instead of by care. Colour carries an
 argument in them and is not decoration:
 
 - **teal** - deterministic code, which cannot be talked out of a decision
@@ -32,7 +38,7 @@ To rebuild:
 
 ```bash
 cd docs/article/figures
-for f in fig*.py; do uv run python "$f"; done      # .py -> .svg
+for f in fig*.py tr_figures.py; do uv run python "$f"; done   # .py -> .svg
 node render.mjs 2                                  # .svg -> .png at 2x
 ```
 
@@ -46,7 +52,10 @@ RESVG_MODULES=/tmp/svg/node_modules node render.mjs 2
 ```
 
 [`_theme.py`](figures/_theme.py) holds the palette and the drawing primitives. Editing a
-colour there changes it in every figure, which is the point.
+colour there changes it in every figure, which is the point. `fig*.py` are the English
+set; [`tr_figures.py`](figures/tr_figures.py) is the Turkish one - flatter, fewer, and
+with the sequence diagram redrawn as a numbered timeline, because that article is doing
+a different job.
 
 ## Checking the figures
 
